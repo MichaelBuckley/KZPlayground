@@ -7,6 +7,7 @@
 
 #import <objc/runtime.h>
 #import "KZPPlayground.h"
+#import "KZPPlayground+Internal.h"
 #import "RSSwizzle.h"
 #import "SFDynamicCodeInjection.h"
 #import "KZPPlaygroundViewController.h"
@@ -35,12 +36,6 @@ NSString *const KZPPlaygroundDidChangeImplementationNotification = @"KZPPlaygrou
 }
 #pragma clang diagnostic pop
 
-@end
-
-@interface KZPPlayground ()
-@property(nonatomic, weak, readwrite) UIView *worksheetView;
-@property(nonatomic, weak, readwrite) UIViewController *viewController;
-@property(nonatomic, weak, readwrite) KZPPlaygroundViewController *playgroundViewController;
 @end
 
 @implementation KZPPlayground
