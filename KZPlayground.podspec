@@ -16,7 +16,7 @@ Fast robust interations make it easy to prototype custom UI/Algorithms or even l
   s.platform     = :ios, '7.0'
   s.requires_arc = true
 
-  s.source_files = 'Pod/Classes/**/*.h', 'Pod/Classes/**/*.m'
+  s.source_files = 'Pod/Classes/iOS/**/*.h', 'Pod/Classes/iOS/**/*.m', 'Pod/Classes/shared/**/*.h', 'Pod/Classes/shared/**/*.m'
   s.resources = ['Pod/Assets/*']
 
   s.dependency 'dyci', '~> 0.1.5.6'
