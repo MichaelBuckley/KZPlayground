@@ -6,11 +6,19 @@
 
 
 @import Foundation;
+
+#if TARGET_OS_IPHONE
 @import UIKit;
+#else
+@import AppKit;
+#endif
 
+#if TARGET_OS_IPHONE
 @interface KZPPlaygroundViewController : UIViewController
-@property(nonatomic, assign) BOOL timelineHidden;
+#else
+@interface KZPPlaygroundViewController : NSViewController
 
+@property(nonatomic, assign) BOOL timelineHidden;
 + (instancetype)playgroundViewController;
 
 @end

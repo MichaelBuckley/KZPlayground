@@ -9,19 +9,26 @@
 #import <KZPlayground/KZPPlaygroundViewController.h>
 #import "KZPTimelineViewController.h"
 #import "KZPPlayground+Internal.h"
+#import "KZPPlaygroundViewController+Internal.h"
+#import "KZPPlaygroundViewController+CleanWorksheet.h"
 
 @interface KZPPlaygroundViewController ()
-@property(weak, nonatomic) IBOutlet UIView *timelineContainerView;
-@property(weak, nonatomic) IBOutlet UIView *worksheetContainerView;
 @property(strong, nonatomic) KZPPlayground *currentPlayground;
 @property(unsafe_unretained, nonatomic) IBOutlet NSLayoutConstraint *leadingTimelineConstraint;
 @end
 
+#if TARGET_OS_IPHONE
+#define KZStoryboard UIStoryboard
+#define KZViewController UIViewController
+#else
+#define KZStoryboard NSStoryboard
+#define KZViewController NSViewController
+#endif
 @implementation KZPPlaygroundViewController
 
 + (KZPPlaygroundViewController *)playgroundViewController
 {
-  return [[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle bundleForClass:self]] instantiateInitialViewController];
+  return [[KZStoryboard storyboardWithName:@"Main" bundle:[NSBundle bundleForClass:self]] instantiateInitialViewController];
 }
 
 - (void)setTimelineHidden:(BOOL)hidden
@@ -87,17 +94,6 @@
   }];
 }
 
-- (UIView *)cleanWorksheet
-{
-  [self.worksheetContainerView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
-  UIView *worksheetView = [[UIView alloc] initWithFrame:self.worksheetContainerView.bounds];
-  worksheetView.clipsToBounds = YES;
-  worksheetView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-  worksheetView.backgroundColor = UIColor.lightGrayColor;
-  [self.worksheetContainerView addSubview:worksheetView];
-  return worksheetView;
-}
-
 - (void)executePlayground
 {
   [self reset];
@@ -150,7 +146,7 @@
 
 - (id)controllerOfClass:(Class)aClass
 {
-  for (UIViewController *controller in self.childViewControllers) {
+  for (KZViewController *controller in self.childViewControllers) {
     if ([controller isKindOfClass:aClass]) {
       return controller;
     }
