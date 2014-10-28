@@ -4,7 +4,7 @@
 //
 //
 
-@import QuartzCore
+@import QuartzCore;
 
 #import "KZPAnimatorComponent.h"
 

@@ -1,4 +1,5 @@
 #import "KZPPlaygroundViewController+CleanWorksheet.h"
+#import "KZPPlaygroundViewController+Internal.h"
 
 @implementation KZPPlaygroundViewController (CleanWorksheet)
 
