@@ -1,6 +1,6 @@
 #import "KZPPlaygroundViewController.h"
 
-@interface KZPPlaygroundViewController (Internal)
+@interface KZPPlaygroundViewController ()
 @property(weak, nonatomic) IBOutlet UIView *timelineContainerView;
 @property(weak, nonatomic) IBOutlet UIView *worksheetContainerView;
 @end
